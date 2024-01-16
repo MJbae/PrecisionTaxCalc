@@ -24,6 +24,7 @@ public class ResidentId {
             Cipher cipher = Cipher.getInstance(ENCRYPTION_ALGORITHM);
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
             byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(this.encrypted));
+
             return new String(decryptedBytes);
         } catch (Exception e) {
             throw new RuntimeException("Error during decryption", e);
@@ -35,6 +36,7 @@ public class ResidentId {
             Cipher cipher = Cipher.getInstance(ENCRYPTION_ALGORITHM);
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
             byte[] encryptedBytes = cipher.doFinal(data.getBytes());
+
             return Base64.getEncoder().encodeToString(encryptedBytes);
         } catch (Exception e) {
             throw new RuntimeException("Error during encryption", e);
@@ -45,6 +47,7 @@ public class ResidentId {
         try {
             KeyGenerator keyGenerator = KeyGenerator.getInstance(ENCRYPTION_ALGORITHM);
             keyGenerator.init(128);
+
             return keyGenerator.generateKey();
         } catch (Exception e) {
             throw new RuntimeException("Error generating AES key", e);

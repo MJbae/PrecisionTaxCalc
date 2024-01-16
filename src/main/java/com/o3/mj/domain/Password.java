@@ -26,9 +26,10 @@ public class Password {
         try {
             MessageDigest digest = MessageDigest.getInstance(HASH_ALGORITHM);
             byte[] hashBytes = digest.digest(password.getBytes());
+
             return bytesToHex(hashBytes);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Hashing algorithm not found: " + HASH_ALGORITHM, e);
+        } catch (Exception e) {
+            throw new RuntimeException("Error during Hashing: ", e);
         }
     }
 
@@ -39,6 +40,7 @@ public class Password {
         }
         String hexString = formatter.toString();
         formatter.close();
+
         return hexString;
     }
 }

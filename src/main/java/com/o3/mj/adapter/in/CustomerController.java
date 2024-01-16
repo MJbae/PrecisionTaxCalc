@@ -1,9 +1,11 @@
 package com.o3.mj.adapter.in;
 
+import com.o3.mj.adapter.in.dto.LogInRequest;
 import com.o3.mj.adapter.in.dto.SignUpRequest;
 import com.o3.mj.usecase.CustomerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,5 +27,15 @@ public class CustomerController {
         customerService.signup(request.toCommand());
 
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PostMapping("/szs/login")
+    @Operation(summary = "로그인 API")
+    public ResponseEntity<Long> login(@RequestBody LogInRequest request) {
+        String token = customerService.login(request.toCommand());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + token);
+        return ResponseEntity.ok().headers(headers).build();
     }
 }

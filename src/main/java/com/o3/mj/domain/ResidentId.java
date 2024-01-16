@@ -1,19 +1,19 @@
 package com.o3.mj.domain;
 
 import jakarta.persistence.Embeddable;
+import lombok.NoArgsConstructor;
+
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import java.util.Base64;
 
 @Embeddable
+@NoArgsConstructor
 public class ResidentId {
     private static final String ENCRYPTION_ALGORITHM = "AES";
     private static final SecretKey secretKey = generateKey();
     private String encrypted;
-
-    public ResidentId() {
-    }
 
     public ResidentId(String original) {
         this.encrypted = encrypt(original);

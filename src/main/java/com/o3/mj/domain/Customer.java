@@ -2,17 +2,20 @@ package com.o3.mj.domain;
 
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
 @Table(name = "customer")
+@NoArgsConstructor
 public class Customer {
-    @Column(unique = true, length = 40)
-    private String userId;
+    @Id
+    @AttributeOverride(name = "id", column = @Column(name = "id", length = 40))
+    private CustomerId id;
 
-    @Column(length = 80)
+    @Column(length = 10)
     private String name;
 
     @Embedded
@@ -25,25 +28,17 @@ public class Customer {
 
     private final LocalDateTime registeredAt = LocalDateTime.now();
 
-    @Id
-    @TableGenerator(name = "userIdGenerator", table = "sequence", allocationSize = 100)
-    @GeneratedValue(strategy = GenerationType.TABLE, generator = "userIdGenerator")
-    private Long id;
-
-    public Customer() {
-    }
-
-    public Customer(String userId, String name, String residentId, String password) {
-        this.userId = userId;
+    public Customer(CustomerId customerId, String name, ResidentId residentId, Password password) {
+        this.id = customerId;
         this.name = name;
-        this.residentId = new ResidentId(residentId);
-        this.password = new Password(password);
+        this.residentId = residentId;
+        this.password = password;
     }
 
     @Override
     public String toString() {
-        return "User{" +
-                "userId=" + userId +
+        return "Customer{" +
+                "customerId=" + id +
                 ", name=" + name +
                 '}';
     }
@@ -55,11 +50,11 @@ public class Customer {
 
         Customer customer = (Customer) o;
 
-        return Objects.equals(userId, customer.userId);
+        return Objects.equals(id, customer.id);
     }
 
     @Override
     public int hashCode() {
-        return userId != null ? userId.hashCode() : 0;
+        return id != null ? id.hashCode() : 0;
     }
 }

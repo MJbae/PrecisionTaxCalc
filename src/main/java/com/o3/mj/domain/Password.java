@@ -1,17 +1,16 @@
 package com.o3.mj.domain;
 
 import jakarta.persistence.Embeddable;
+import lombok.NoArgsConstructor;
+
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Formatter;
 
 @Embeddable
+@NoArgsConstructor
 public class Password {
     private static final String HASH_ALGORITHM = "SHA-256";
     private String hashed;
-
-    public Password() {
-    }
 
     public Password(String original) {
         this.hashed = hash(original);

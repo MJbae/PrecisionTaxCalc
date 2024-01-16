@@ -15,8 +15,9 @@ public class Customer {
     @Column(length = 80)
     private String name;
 
-    @Column(length = 32)
-    private String regNo;
+    @Embedded
+    @AttributeOverride(name = "encrypted", column = @Column(name = "residentId", length = 60))
+    private ResidentId residentId;
 
     @Embedded
     @AttributeOverride(name = "hashed", column = @Column(name = "password", length = 64))
@@ -32,10 +33,10 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String userId, String name, String regNo, String password) {
+    public Customer(String userId, String name, String residentId, String password) {
         this.userId = userId;
         this.name = name;
-        this.regNo = regNo;
+        this.residentId = new ResidentId(residentId);
         this.password = new Password(password);
     }
 

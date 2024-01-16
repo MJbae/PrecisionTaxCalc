@@ -22,7 +22,7 @@ public class Password {
         return hashedTarget.equals(this.hashed);
     }
 
-    public String hash(String password) {
+    private String hash(String password) {
         try {
             MessageDigest digest = MessageDigest.getInstance(HASH_ALGORITHM);
             byte[] hashBytes = digest.digest(password.getBytes());

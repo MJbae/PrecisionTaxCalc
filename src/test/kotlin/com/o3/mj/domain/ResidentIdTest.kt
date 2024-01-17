@@ -19,6 +19,4 @@ class ResidentIdTest : FunSpec({
 
         residentId.toOriginal() shouldBe original
     }
-
-
 })

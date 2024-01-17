@@ -9,6 +9,10 @@ public class Encryptor {
     private static final String ENCRYPTION_ALGORITHM = "AES";
     private static final SecretKey secretKey = generateKey();
 
+    public String encrypt(Customer customer) {
+        return this.encrypt(customer.getId().toString());
+    }
+
     public String encrypt(String originData) {
         try {
             Cipher cipher = Cipher.getInstance(ENCRYPTION_ALGORITHM);

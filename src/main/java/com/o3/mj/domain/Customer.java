@@ -35,6 +35,14 @@ public class Customer {
         this.password = password;
     }
 
+    public CustomerId getId() {
+        return id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +

@@ -5,8 +5,7 @@ import com.o3.mj.domain.Customer;
 import com.o3.mj.domain.CustomerFactory;
 import com.o3.mj.domain.CustomerId;
 import com.o3.mj.domain.Encryptor;
-import com.o3.mj.usecase.dto.LogInCommand;
-import com.o3.mj.usecase.dto.SignUpCommand;
+import com.o3.mj.usecase.dto.*;
 import com.o3.mj.usecase.exception.NotRegisteredCustomerException;
 import com.o3.mj.usecase.exception.RedundantCustomerException;
 import org.springframework.stereotype.Service;
@@ -23,7 +22,7 @@ public class CustomerService {
         this.repository = repository;
     }
 
-    public void signup(SignUpCommand command) {
+    public TokenResponse signup(SignUpCommand command) {
         Optional<Customer> redundantCustomer = repository.findById(new CustomerId(command.getCustomerId()));
         if (redundantCustomer.isPresent()) {
             throw new RedundantCustomerException(redundantCustomer.get());
@@ -31,14 +30,25 @@ public class CustomerService {
 
         Customer customer = factory.createFrom(command);
         repository.save(customer);
+
+        return new TokenResponse(encryptor.encrypt(customer));
     }
 
-    public String login(LogInCommand command) {
+    public TokenResponse login(LogInCommand command) {
         Optional<Customer> customer = repository.findById(new CustomerId(command.getCustomerId()));
         if (customer.isEmpty()) {
             throw new NotRegisteredCustomerException(command.getCustomerId());
         }
 
-        return encryptor.encrypt(command.getCustomerId());
+        return new TokenResponse(encryptor.encrypt(customer.get()));
+    }
+
+    public CustomerResponse searchMe(CustomerQuery query) {
+        Optional<Customer> customer = repository.findById(new CustomerId(query.getCustomerId()));
+        if (customer.isEmpty()) {
+            throw new NotRegisteredCustomerException(query.getCustomerId());
+        }
+
+        return new CustomerResponse().from(customer.get());
     }
 }

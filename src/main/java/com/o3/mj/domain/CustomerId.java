@@ -14,9 +14,7 @@ public class CustomerId {
 
     @Override
     public String toString() {
-        return "CustomerId{" +
-                "id='" + id + '\'' +
-                '}';
+        return id;
     }
 
     @Override

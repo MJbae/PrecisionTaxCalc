@@ -23,12 +23,7 @@ public class TaxMapper {
         tax.setTotalSalary(totalSalary);
 
         Set<IncomeDeduction> incomeDeductions = scrapedResponse.getData().getJsonList().getIncomeDeductions().stream()
-                .map(deduction -> {
-                    IncomeDeduction incomeDeduction = new IncomeDeduction();
-                    incomeDeduction.setAmount(parseBigDecimal(deduction.getAmount()));
-                    incomeDeduction.setDeductionType(DeductionType.fromDescription(deduction.getDeductionType()));
-                    return incomeDeduction;
-                })
+                .map(deduction -> new IncomeDeduction(parseBigDecimal(deduction.getAmount()), DeductionType.fromDescription(deduction.getDeductionType())))
                 .collect(Collectors.toSet());
         tax.setIncomeDeductions(incomeDeductions);
 

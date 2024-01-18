@@ -23,7 +23,6 @@ import java.util.Optional;
 public class ScrapCustomerService {
     private final CustomerRepository repository;
     private final TaxRepository taxRepository;
-
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final TaxMapper mapper = new TaxMapper();
 
@@ -38,7 +37,6 @@ public class ScrapCustomerService {
             throw new NotRegisteredCustomerException(query.getCustomerId());
         }
 
-//        String requestPayload = buildRequestPayload(customer.get());
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://codetest.3o3.co.kr/v2/scrap";
 

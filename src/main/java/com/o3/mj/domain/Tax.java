@@ -38,4 +38,16 @@ public class Tax {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+
+    public BigDecimal getCalculatedTaxAmount() {
+        return this.calculatedTaxAmount;
+    }
+
+    public BigDecimal getTotalSalary() {
+        return this.totalSalary;
+    }
+
+    public Set<IncomeDeduction> getIncomeDeductions() {
+        return this.incomeDeductions;
+    }
 }

@@ -1,4 +1,4 @@
-package com.o3.mj.adapter.in.dto;
+package com.o3.mj.controller.dto;
 
 import com.o3.mj.usecase.dto.LogInCommand;
 import lombok.Getter;

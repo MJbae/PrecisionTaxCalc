@@ -1,4 +1,4 @@
-package com.o3.mj.adapter.out;
+package com.o3.mj.repository;
 
 import com.o3.mj.domain.Customer;
 import com.o3.mj.domain.Tax;

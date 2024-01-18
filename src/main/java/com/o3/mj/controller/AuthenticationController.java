@@ -1,7 +1,7 @@
-package com.o3.mj.adapter.in;
+package com.o3.mj.controller;
 
-import com.o3.mj.adapter.in.dto.LogInRequest;
-import com.o3.mj.adapter.in.dto.SignUpRequest;
+import com.o3.mj.controller.dto.LogInRequest;
+import com.o3.mj.controller.dto.SignUpRequest;
 import com.o3.mj.usecase.*;
 import com.o3.mj.usecase.dto.*;
 import io.swagger.v3.oas.annotations.Operation;

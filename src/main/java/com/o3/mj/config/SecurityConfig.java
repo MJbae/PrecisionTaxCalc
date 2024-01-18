@@ -1,6 +1,6 @@
 package com.o3.mj.config;
 
-import com.o3.mj.adapter.in.TokenAuthenticationFilter;
+import com.o3.mj.controller.TokenAuthenticationFilter;
 import com.o3.mj.usecase.SearchCustomerService;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;

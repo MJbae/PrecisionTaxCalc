@@ -1,7 +1,7 @@
 package com.o3.mj.usecase;
 
-import com.o3.mj.adapter.out.CustomerRepository;
-import com.o3.mj.adapter.out.TaxRepository;
+import com.o3.mj.repository.CustomerRepository;
+import com.o3.mj.repository.TaxRepository;
 import com.o3.mj.domain.*;
 import com.o3.mj.usecase.dto.RefundQuery;
 import com.o3.mj.usecase.dto.RefundResponse;

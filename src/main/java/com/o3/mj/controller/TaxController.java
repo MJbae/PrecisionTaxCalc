@@ -1,4 +1,4 @@
-package com.o3.mj.adapter.in;
+package com.o3.mj.controller;
 
 import com.o3.mj.usecase.RefundTaxService;
 import com.o3.mj.usecase.ScrapTaxService;

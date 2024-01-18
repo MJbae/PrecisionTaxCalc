@@ -1,6 +1,6 @@
 package com.o3.mj.usecase;
 
-import com.o3.mj.adapter.out.CustomerRepository;
+import com.o3.mj.repository.CustomerRepository;
 import com.o3.mj.domain.*;
 import com.o3.mj.usecase.dto.*;
 import com.o3.mj.usecase.exception.NotAllowedRegisterException;

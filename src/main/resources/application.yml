@@ -6,7 +6,7 @@ server:
 
 spring:
   application:
-    name: Precision Tax Professional Calculation System
+    name: Precision Tax Calculation System
   datasource:
     url: jdbc:h2:mem:testdb;
     username: sa

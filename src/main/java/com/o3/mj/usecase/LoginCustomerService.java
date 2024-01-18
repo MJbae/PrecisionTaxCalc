@@ -1,6 +1,6 @@
 package com.o3.mj.usecase;
 
-import com.o3.mj.adapter.out.CustomerRepository;
+import com.o3.mj.repository.CustomerRepository;
 import com.o3.mj.domain.Customer;
 import com.o3.mj.domain.CustomerId;
 import com.o3.mj.domain.Encryptor;

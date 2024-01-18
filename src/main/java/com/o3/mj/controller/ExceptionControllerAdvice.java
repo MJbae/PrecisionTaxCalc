@@ -1,6 +1,6 @@
-package com.o3.mj.adapter.in;
+package com.o3.mj.controller;
 
-import com.o3.mj.adapter.in.dto.ErrorResponse;
+import com.o3.mj.controller.dto.ErrorResponse;
 import com.o3.mj.usecase.exception.NotAllowedRegisterException;
 import com.o3.mj.usecase.exception.NotRegisteredCustomerException;
 import com.o3.mj.usecase.exception.RedundantCustomerException;

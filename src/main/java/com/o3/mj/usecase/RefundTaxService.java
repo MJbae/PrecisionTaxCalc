@@ -4,6 +4,7 @@ import com.o3.mj.adapter.out.CustomerRepository;
 import com.o3.mj.adapter.out.TaxRepository;
 import com.o3.mj.domain.*;
 import com.o3.mj.usecase.dto.CustomerQuery;
+import com.o3.mj.usecase.dto.RefundQuery;
 import com.o3.mj.usecase.dto.RefundResponse;
 import com.o3.mj.usecase.exception.NotRegisteredCustomerException;
 import com.o3.mj.usecase.exception.NotRegisteredTaxException;
@@ -26,7 +27,7 @@ public class RefundTaxService {
     }
 
     @Transactional
-    public RefundResponse refund(CustomerQuery query) throws HttpClientErrorException {
+    public RefundResponse refund(RefundQuery query) throws HttpClientErrorException {
         Optional<Customer> customer = repository.findById(new CustomerId(query.getCustomerId()));
         if (customer.isEmpty()) {
             throw new NotRegisteredCustomerException(query.getCustomerId());

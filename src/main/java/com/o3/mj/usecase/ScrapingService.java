@@ -1,9 +1,6 @@
 package com.o3.mj.usecase;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.o3.mj.adapter.in.ExceptionControllerAdvice;
-import com.o3.mj.domain.Customer;
-import com.o3.mj.domain.ResidentId;
 import com.o3.mj.usecase.dto.ScrapingResponse;
 import com.o3.mj.usecase.dto.ScrapingRequest;
 import org.slf4j.Logger;

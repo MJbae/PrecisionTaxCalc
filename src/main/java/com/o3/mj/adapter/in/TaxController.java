@@ -28,13 +28,13 @@ public class TaxController {
     @Secured("ROLE_USER")
     @Operation(summary = "세금 정보 스크랩 API", security = {@SecurityRequirement(name = "BearerToken")})
     public void scrap(@AuthenticationPrincipal CustomerData customer) {
-        scrapService.scrap(new CustomerQuery(customer.getCustomerId()));
+        scrapService.scrap(new ScrapCommand(customer.getCustomerId()));
     }
 
     @GetMapping("/szs/refund")
     @Secured("ROLE_USER")
     @Operation(summary = "환금액 계산 API", security = {@SecurityRequirement(name = "BearerToken")})
     public RefundResponse refund(@AuthenticationPrincipal CustomerData customer) {
-        return refundService.refund(new CustomerQuery(customer.getCustomerId()));
+        return refundService.refund(new RefundQuery(customer.getCustomerId()));
     }
 }

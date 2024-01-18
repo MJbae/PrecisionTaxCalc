@@ -1,4 +1,4 @@
-package com.o3.mj.domain;
+package com.o3.mj.domain.tax;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

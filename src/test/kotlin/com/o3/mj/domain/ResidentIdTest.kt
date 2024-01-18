@@ -1,5 +1,6 @@
 package com.o3.mj.domain
 
+import com.o3.mj.domain.customer.ResidentId
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe

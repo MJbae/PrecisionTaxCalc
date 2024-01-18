@@ -1,6 +1,6 @@
 package com.o3.mj.usecase.dto;
 
-import com.o3.mj.domain.Customer;
+import com.o3.mj.domain.customer.Customer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

@@ -1,8 +1,8 @@
 package com.o3.mj.usecase;
 
 import com.o3.mj.repository.CustomerRepository;
-import com.o3.mj.domain.Customer;
-import com.o3.mj.domain.CustomerId;
+import com.o3.mj.domain.customer.Customer;
+import com.o3.mj.domain.customer.CustomerId;
 import com.o3.mj.usecase.dto.CustomerData;
 import com.o3.mj.usecase.dto.CustomerQuery;
 import com.o3.mj.usecase.dto.CustomerResponse;

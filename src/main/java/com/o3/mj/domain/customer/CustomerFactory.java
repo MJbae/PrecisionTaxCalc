@@ -1,4 +1,4 @@
-package com.o3.mj.domain;
+package com.o3.mj.domain.customer;
 
 import com.o3.mj.usecase.dto.SignUpCommand;
 

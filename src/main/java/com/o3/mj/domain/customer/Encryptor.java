@@ -1,4 +1,6 @@
-package com.o3.mj.domain;
+package com.o3.mj.domain.customer;
+
+import com.o3.mj.domain.customer.Customer;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;

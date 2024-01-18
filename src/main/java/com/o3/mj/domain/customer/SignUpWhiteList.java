@@ -1,4 +1,4 @@
-package com.o3.mj.domain;
+package com.o3.mj.domain.customer;
 
 import java.util.HashSet;
 import java.util.Set;

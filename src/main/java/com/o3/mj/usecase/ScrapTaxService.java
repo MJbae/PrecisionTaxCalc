@@ -2,10 +2,10 @@ package com.o3.mj.usecase;
 
 import com.o3.mj.repository.CustomerRepository;
 import com.o3.mj.repository.TaxRepository;
-import com.o3.mj.domain.Customer;
-import com.o3.mj.domain.CustomerId;
-import com.o3.mj.domain.Tax;
-import com.o3.mj.domain.TaxMapper;
+import com.o3.mj.domain.customer.Customer;
+import com.o3.mj.domain.customer.CustomerId;
+import com.o3.mj.domain.tax.Tax;
+import com.o3.mj.domain.tax.TaxMapper;
 import com.o3.mj.usecase.dto.ScrapCommand;
 import com.o3.mj.usecase.dto.ScrapingResponse;
 import com.o3.mj.usecase.exception.NotRegisteredCustomerException;

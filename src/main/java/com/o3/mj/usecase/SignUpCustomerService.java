@@ -1,7 +1,7 @@
 package com.o3.mj.usecase;
 
+import com.o3.mj.domain.customer.*;
 import com.o3.mj.repository.CustomerRepository;
-import com.o3.mj.domain.*;
 import com.o3.mj.usecase.dto.*;
 import com.o3.mj.usecase.exception.NotAllowedRegisterException;
 import com.o3.mj.usecase.exception.RedundantCustomerException;

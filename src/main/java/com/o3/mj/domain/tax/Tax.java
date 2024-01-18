@@ -1,5 +1,6 @@
-package com.o3.mj.domain;
+package com.o3.mj.domain.tax;
 
+import com.o3.mj.domain.customer.Customer;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.HashSet;

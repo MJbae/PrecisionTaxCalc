@@ -1,4 +1,4 @@
-package com.o3.mj.domain;
+package com.o3.mj.domain.tax;
 
 public enum DeductionType {
     INSURANCE("보험료"),

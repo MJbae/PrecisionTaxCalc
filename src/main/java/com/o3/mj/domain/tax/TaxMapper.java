@@ -1,6 +1,7 @@
-package com.o3.mj.domain;
+package com.o3.mj.domain.tax;
 
 
+import com.o3.mj.domain.customer.Customer;
 import com.o3.mj.usecase.dto.ScrapingResponse;
 
 import java.math.BigDecimal;

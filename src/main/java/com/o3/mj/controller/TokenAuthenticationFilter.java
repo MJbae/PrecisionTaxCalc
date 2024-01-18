@@ -1,6 +1,6 @@
 package com.o3.mj.controller;
 
-import com.o3.mj.domain.Encryptor;
+import com.o3.mj.domain.customer.Encryptor;
 import com.o3.mj.usecase.SearchCustomerService;
 import com.o3.mj.usecase.dto.CustomerData;
 import com.o3.mj.usecase.dto.CustomerQuery;

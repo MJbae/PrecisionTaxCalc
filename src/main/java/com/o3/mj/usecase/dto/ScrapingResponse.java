@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ScrapedResponse {
+public class ScrapingResponse {
     private Data data;
 
     @Getter

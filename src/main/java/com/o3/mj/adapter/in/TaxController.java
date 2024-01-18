@@ -1,7 +1,7 @@
 package com.o3.mj.adapter.in;
 
 import com.o3.mj.usecase.RefundTaxService;
-import com.o3.mj.usecase.ScrapCustomerService;
+import com.o3.mj.usecase.ScrapTaxService;
 import com.o3.mj.usecase.dto.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Tag(name = "세액 계산 API")
 public class TaxController {
-    private final ScrapCustomerService scrapService;
+    private final ScrapTaxService scrapService;
     private final RefundTaxService refundService;
 
-    public TaxController(ScrapCustomerService scrapService, RefundTaxService refundService) {
+    public TaxController(ScrapTaxService scrapService, RefundTaxService refundService) {
         this.scrapService = scrapService;
         this.refundService = refundService;
     }

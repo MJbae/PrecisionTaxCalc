@@ -27,7 +27,7 @@ public class ExceptionControllerAdvice {
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler({Exception.class, RuntimeException.class})
     public ErrorResponse handleException(Exception e) {
         logger.error("server error", e);
         return new ErrorResponse(50000, e.getMessage());

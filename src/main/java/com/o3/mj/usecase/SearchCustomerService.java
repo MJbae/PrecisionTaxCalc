@@ -10,7 +10,6 @@ import com.o3.mj.usecase.exception.NotRegisteredCustomerException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
 
 @Service
 public class SearchCustomerService {
@@ -22,21 +21,17 @@ public class SearchCustomerService {
 
     @Transactional(readOnly = true)
     public CustomerData search(CustomerQuery query) {
-        Optional<Customer> customer = repository.findById(new CustomerId(query.getCustomerId()));
-        if (customer.isEmpty()) {
-            throw new NotRegisteredCustomerException(query.getCustomerId());
-        }
+        Customer customer = repository.findById(new CustomerId(query.getCustomerId()))
+                .orElseThrow(() -> new NotRegisteredCustomerException(query.getCustomerId()));
 
-        return new CustomerData(query.getCustomerId());
+        return new CustomerData(customer.getId().toString());
     }
 
     @Transactional(readOnly = true)
     public CustomerResponse searchMe(CustomerQuery query) {
-        Optional<Customer> customer = repository.findById(new CustomerId(query.getCustomerId()));
-        if (customer.isEmpty()) {
-            throw new NotRegisteredCustomerException(query.getCustomerId());
-        }
+        Customer customer = repository.findById(new CustomerId(query.getCustomerId()))
+                .orElseThrow(() -> new NotRegisteredCustomerException(query.getCustomerId()));
 
-        return new CustomerResponse().from(customer.get());
+        return new CustomerResponse(customer);
     }
 }

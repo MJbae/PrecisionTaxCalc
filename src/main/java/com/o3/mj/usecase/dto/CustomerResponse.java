@@ -11,12 +11,8 @@ public class CustomerResponse {
     private String customerId;
     private String name;
 
-    public CustomerResponse(String customerId, String name) {
-        this.customerId = customerId;
-        this.name = name;
-    }
-
-    public CustomerResponse from(Customer customer){
-        return new CustomerResponse(customer.getId().toString(), customer.getName());
+    public CustomerResponse(Customer customer) {
+        this.customerId = customer.getId().toString();
+        this.name = customer.getName();
     }
 }

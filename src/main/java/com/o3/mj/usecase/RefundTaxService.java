@@ -3,7 +3,6 @@ package com.o3.mj.usecase;
 import com.o3.mj.adapter.out.CustomerRepository;
 import com.o3.mj.adapter.out.TaxRepository;
 import com.o3.mj.domain.*;
-import com.o3.mj.usecase.dto.CustomerQuery;
 import com.o3.mj.usecase.dto.RefundQuery;
 import com.o3.mj.usecase.dto.RefundResponse;
 import com.o3.mj.usecase.exception.NotRegisteredCustomerException;
@@ -13,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.math.BigDecimal;
-import java.util.Optional;
 
 @Service
 public class RefundTaxService {
@@ -28,20 +26,15 @@ public class RefundTaxService {
 
     @Transactional
     public RefundResponse refund(RefundQuery query) throws HttpClientErrorException {
-        Optional<Customer> customer = repository.findById(new CustomerId(query.getCustomerId()));
-        if (customer.isEmpty()) {
-            throw new NotRegisteredCustomerException(query.getCustomerId());
-        }
+        Customer customer = repository.findById(new CustomerId(query.getCustomerId()))
+                .orElseThrow(() -> new NotRegisteredCustomerException(query.getCustomerId()));
 
-        Optional<Tax> tax = taxRepository.findByCustomer(customer.get());
-        if (tax.isEmpty()) {
-            throw new NotRegisteredTaxException(query.getCustomerId());
-        }
+        Tax tax = taxRepository.findByCustomer(customer)
+                .orElseThrow(() -> new NotRegisteredTaxException(query.getCustomerId()));
 
-        BigDecimal retirementPensionDeduction = calculator.calculateRetirementPensionDeduction(tax.get());
-        BigDecimal finalTaxAmount =  calculator.calculateFinalTaxAmount(tax.get(), retirementPensionDeduction);
+        BigDecimal retirementPensionDeduction = calculator.calculateRetirementPensionDeduction(tax);
+        BigDecimal finalTaxAmount = calculator.calculateFinalTaxAmount(tax, retirementPensionDeduction);
 
-        return new RefundResponse(customer.get().getName(), finalTaxAmount.toString(), retirementPensionDeduction.toString());
+        return new RefundResponse(customer.getName(), finalTaxAmount.toString(), retirementPensionDeduction.toString());
     }
-
 }

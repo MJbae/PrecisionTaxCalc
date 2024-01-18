@@ -6,14 +6,11 @@ import com.o3.mj.domain.Customer;
 import com.o3.mj.domain.CustomerId;
 import com.o3.mj.domain.Tax;
 import com.o3.mj.domain.TaxMapper;
-import com.o3.mj.usecase.dto.CustomerQuery;
 import com.o3.mj.usecase.dto.ScrapCommand;
 import com.o3.mj.usecase.dto.ScrapingResponse;
 import com.o3.mj.usecase.exception.NotRegisteredCustomerException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 public class ScrapTaxService {
@@ -30,14 +27,12 @@ public class ScrapTaxService {
     }
 
     public void scrap(ScrapCommand command) {
-        Optional<Customer> customer = repository.findById(new CustomerId(command.getCustomerId()));
-        if (customer.isEmpty()) {
-            throw new NotRegisteredCustomerException(command.getCustomerId());
-        }
+        Customer customer = repository.findById(new CustomerId(command.getCustomerId()))
+                .orElseThrow(() -> new NotRegisteredCustomerException(command.getCustomerId()));
 
-        ScrapingResponse response = scrapingService.scrapTaxData(customer.get().getName(), customer.get().getOriginResidentId());
+        ScrapingResponse response = scrapingService.scrapTaxData(customer.getName(), customer.getOriginResidentId());
 
-        mapAndSave(response, customer.get());
+        mapAndSave(response, customer);
     }
 
     @Transactional
@@ -45,5 +40,4 @@ public class ScrapTaxService {
         Tax tax = mapper.from(response, customer);
         taxRepository.save(tax);
     }
-
 }

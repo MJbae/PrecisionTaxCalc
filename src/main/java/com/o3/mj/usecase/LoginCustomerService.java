@@ -10,7 +10,6 @@ import com.o3.mj.usecase.exception.NotRegisteredCustomerException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
 
 @Service
 public class LoginCustomerService {
@@ -23,11 +22,9 @@ public class LoginCustomerService {
 
     @Transactional
     public TokenResponse login(LogInCommand command) {
-        Optional<Customer> customer = repository.findById(new CustomerId(command.getCustomerId()));
-        if (customer.isEmpty()) {
-            throw new NotRegisteredCustomerException(command.getCustomerId());
-        }
+        Customer customer = repository.findById(new CustomerId(command.getCustomerId()))
+                .orElseThrow(() -> new NotRegisteredCustomerException(command.getCustomerId()));
 
-        return new TokenResponse(encryptor.encrypt(customer.get()));
+        return new TokenResponse(encryptor.encrypt(customer));
     }
 }

@@ -37,8 +37,8 @@ public class RefundTaxService {
             throw new NotRegisteredTaxException(query.getCustomerId());
         }
 
-        BigDecimal finalTaxAmount =  calculator.calculateFinalTaxAmount(tax.get());
         BigDecimal retirementPensionDeduction = calculator.calculateRetirementPensionDeduction(tax.get());
+        BigDecimal finalTaxAmount =  calculator.calculateFinalTaxAmount(tax.get(), retirementPensionDeduction);
 
         return new RefundResponse(customer.get().getName(), finalTaxAmount.toString(), retirementPensionDeduction.toString());
     }

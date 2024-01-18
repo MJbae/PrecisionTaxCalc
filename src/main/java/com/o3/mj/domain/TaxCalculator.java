@@ -14,9 +14,8 @@ public class TaxCalculator {
     private static final BigDecimal MEDICAL_RATE = BigDecimal.valueOf(0.15);
     private static final BigDecimal MEDICAL_THRESHOLD_RATE = BigDecimal.valueOf(0.03);
 
-    public BigDecimal calculateFinalTaxAmount(Tax tax) {
+    public BigDecimal calculateFinalTaxAmount(Tax tax, BigDecimal retirementPensionDeduction) {
         BigDecimal laborIncomeDeduction = tax.getCalculatedTaxAmount().multiply(LABOR_INCOME_TAX_RATE);
-        BigDecimal retirementPensionDeduction = calculateRetirementPensionDeduction(tax);
         BigDecimal specialDeduction = calculateSpecialDeduction(tax);
         BigDecimal standardDeduction = calculateStandardDeduction(specialDeduction);
 

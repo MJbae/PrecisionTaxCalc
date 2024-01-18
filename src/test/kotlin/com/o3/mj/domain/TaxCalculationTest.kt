@@ -19,7 +19,8 @@ class TaxCalculationTest : FunSpec({
             )
         }
 
-        val finalTaxAmount = TaxCalculator().calculateFinalTaxAmount(tax)
+        val retirementPensionDeduction = TaxCalculator().calculateRetirementPensionDeduction(tax)
+        val finalTaxAmount = TaxCalculator().calculateFinalTaxAmount(tax, retirementPensionDeduction)
 
         finalTaxAmount shouldBe BigDecimal("675800")
     }
@@ -37,7 +38,8 @@ class TaxCalculationTest : FunSpec({
             )
         }
 
-        val finalTaxAmount = TaxCalculator().calculateFinalTaxAmount(tax)
+        val retirementPensionDeduction = TaxCalculator().calculateRetirementPensionDeduction(tax)
+        val finalTaxAmount = TaxCalculator().calculateFinalTaxAmount(tax, retirementPensionDeduction)
 
         finalTaxAmount shouldBe BigDecimal("0")
     }
@@ -55,7 +57,8 @@ class TaxCalculationTest : FunSpec({
             )
         }
 
-        val finalTaxAmount = TaxCalculator().calculateFinalTaxAmount(tax)
+        val retirementPensionDeduction = TaxCalculator().calculateRetirementPensionDeduction(tax)
+        val finalTaxAmount = TaxCalculator().calculateFinalTaxAmount(tax, retirementPensionDeduction)
 
         finalTaxAmount shouldBe BigDecimal("440000")
     }
@@ -73,7 +76,8 @@ class TaxCalculationTest : FunSpec({
             )
         }
 
-        val finalTaxAmount = TaxCalculator().calculateFinalTaxAmount(tax)
+        val retirementPensionDeduction = TaxCalculator().calculateRetirementPensionDeduction(tax)
+        val finalTaxAmount = TaxCalculator().calculateFinalTaxAmount(tax, retirementPensionDeduction)
 
         finalTaxAmount shouldBe BigDecimal("469999")
     }
@@ -91,9 +95,9 @@ class TaxCalculationTest : FunSpec({
             )
         }
 
-        val finalTaxAmount = TaxCalculator().calculateFinalTaxAmount(tax)
+        val retirementPensionDeduction = TaxCalculator().calculateRetirementPensionDeduction(tax)
+        val finalTaxAmount = TaxCalculator().calculateFinalTaxAmount(tax, retirementPensionDeduction)
 
         finalTaxAmount shouldBe BigDecimal("468000")
     }
-
 })

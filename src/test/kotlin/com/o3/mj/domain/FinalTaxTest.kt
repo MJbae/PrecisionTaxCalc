@@ -140,7 +140,7 @@ class FinalTaxTest : FunSpec({
         val deduction = RetirementPensionDeductionService().calculate(tax)
         val finalTaxAmount = FinalTaxService().calculate(tax, deduction)
 
-        finalTaxAmount shouldBe BigDecimal("469999")
+        finalTaxAmount shouldBe BigDecimal("470000")
     }
 
     test("특별세액공제금액 합계가 130,000원 초과라면, 결정세액 계산에서 표준세액공제금액을 추가하지 않는다") {

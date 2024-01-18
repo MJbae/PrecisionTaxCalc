@@ -24,14 +24,6 @@ public class IncomeDeduction {
         this.deductionType = deductionType;
     }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public void setDeductionType(DeductionType deductionType) {
-        this.deductionType = deductionType;
-    }
-
     public DeductionType getDeductionType() {
         return this.deductionType;
     }

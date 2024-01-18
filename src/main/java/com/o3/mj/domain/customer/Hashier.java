@@ -1,10 +1,6 @@
 package com.o3.mj.domain.customer;
 
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
 import java.security.MessageDigest;
-import java.util.Base64;
 import java.util.Formatter;
 
 public class Hashier {

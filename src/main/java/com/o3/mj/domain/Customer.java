@@ -12,6 +12,7 @@ import java.util.Objects;
 @NoArgsConstructor
 public class Customer {
     @Id
+    @Embedded
     @AttributeOverride(name = "id", column = @Column(name = "id", length = 40))
     private CustomerId id;
 
@@ -41,6 +42,10 @@ public class Customer {
 
     public String getName() {
         return this.name;
+    }
+
+    public String getOriginResidentId(){
+        return this.residentId.toOriginal();
     }
 
     @Override

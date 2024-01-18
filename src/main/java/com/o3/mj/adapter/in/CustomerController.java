@@ -3,6 +3,7 @@ package com.o3.mj.adapter.in;
 import com.o3.mj.adapter.in.dto.LogInRequest;
 import com.o3.mj.adapter.in.dto.SignUpRequest;
 import com.o3.mj.usecase.CustomerService;
+import com.o3.mj.usecase.ScrapCustomerService;
 import com.o3.mj.usecase.dto.CustomerData;
 import com.o3.mj.usecase.dto.CustomerQuery;
 import com.o3.mj.usecase.dto.CustomerResponse;
@@ -21,9 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "고객 관리 API")
 public class CustomerController {
     private final CustomerService customerService;
+    private final ScrapCustomerService scrapService;
 
-    public CustomerController(CustomerService customerService) {
+    public CustomerController(CustomerService customerService, ScrapCustomerService scrapService) {
         this.customerService = customerService;
+        this.scrapService = scrapService;
     }
 
     @PostMapping("/szs/signup")
@@ -42,7 +45,13 @@ public class CustomerController {
     @Secured("ROLE_USER")
     @Operation(summary = "본인 정보 조회 API", security = { @SecurityRequirement(name = "BearerToken") })
     public CustomerResponse searchMe(@AuthenticationPrincipal CustomerData customer) {
-
         return customerService.searchMe(new CustomerQuery(customer.getCustomerId()));
+    }
+
+    @PostMapping("/szs/scrap")
+    @Secured("ROLE_USER")
+    @Operation(summary = "본인 정보 스크랩 API", security = { @SecurityRequirement(name = "BearerToken") })
+    public void scrap(@AuthenticationPrincipal CustomerData customer) {
+        scrapService.scrap(new CustomerQuery(customer.getCustomerId()));
     }
 }

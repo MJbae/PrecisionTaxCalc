@@ -36,6 +36,10 @@ public class Customer {
         this.password = password;
     }
 
+    public boolean hasSamePassword(String target){
+        return this.password.isMatched(target);
+    }
+
     public CustomerId getId() {
         return id;
     }

@@ -7,6 +7,7 @@ import com.o3.mj.domain.customer.Encryptor;
 import com.o3.mj.usecase.dto.LogInCommand;
 import com.o3.mj.usecase.dto.TokenResponse;
 import com.o3.mj.usecase.exception.NotRegisteredCustomerException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,10 @@ public class LoginCustomerService {
     public TokenResponse login(LogInCommand command) {
         Customer customer = repository.findById(new CustomerId(command.getCustomerId()))
                 .orElseThrow(() -> new NotRegisteredCustomerException(command.getCustomerId()));
+
+        if (!customer.hasSamePassword(command.getPassword())){
+            throw new BadCredentialsException("Not Matched Password, userId: " + command.getCustomerId());
+        }
 
         return new TokenResponse(encryptor.encrypt(customer));
     }

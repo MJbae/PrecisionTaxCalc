@@ -33,23 +33,6 @@ public class Tax {
         this.customer = customer;
     }
 
-    public void setTotalSalary(BigDecimal totalSalary) {
-        this.totalSalary = totalSalary;
-    }
-
-    public void setCalculatedTaxAmount(BigDecimal calculatedTaxAmount) {
-        this.calculatedTaxAmount = calculatedTaxAmount;
-    }
-
-    public void setIncomeDeductions(Set<IncomeDeduction> incomeDeductions) {
-        this.incomeDeductions.clear();
-        this.incomeDeductions = incomeDeductions;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
     public BigDecimal getCalculatedTaxAmount() {
         return this.calculatedTaxAmount;
     }

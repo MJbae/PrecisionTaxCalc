@@ -13,10 +13,6 @@ public class ResidentId {
     private final Encryptor encryptor = new Encryptor();
     private String encrypted;
 
-    public Encryptor getEncryptor() {
-        return encryptor;
-    }
-
 
     public ResidentId(String original) {
         this.encrypted = encryptor.encrypt(original);

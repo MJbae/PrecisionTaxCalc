@@ -20,13 +20,15 @@ public class SpecialDeductionService {
         BigDecimal educationDeduction = educationExpenses.multiply(EDUCATION_RATE);
         BigDecimal donationDeduction = donationAmount.multiply(DONATION_RATE);
         BigDecimal insuranceDeduction = insuranceAmount.multiply(INSURANCE_RATE);
-        BigDecimal medicalDeduction = medicalExpenses.subtract(tax.getTotalSalary().multiply(MEDICAL_THRESHOLD_RATE))
+        BigDecimal medicalDeduction = medicalExpenses
+                .subtract(tax.getTotalSalary().multiply(MEDICAL_THRESHOLD_RATE))
                 .multiply(MEDICAL_RATE)
                 .max(BigDecimal.ZERO);
 
-        return insuranceDeduction.add(medicalDeduction)
-                .add(educationDeduction)
+        return medicalDeduction
+                .add(insuranceDeduction)
                 .add(donationDeduction)
+                .add(educationDeduction)
                 .setScale(0, RoundingMode.DOWN);
     }
 }

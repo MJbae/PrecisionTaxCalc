@@ -13,7 +13,8 @@ import java.util.Set;
 @NoArgsConstructor
 public class Tax {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @TableGenerator(name = "TaxIdGenerator", table = "sequence", allocationSize = 10)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "TaxIdGenerator")
     private Long id;
 
     @OneToOne

@@ -1,10 +1,12 @@
 package com.o3.mj.controller.dto;
 
 import com.o3.mj.usecase.dto.SignUpCommand;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 public class SignUpRequest {
     private String userId;

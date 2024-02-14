@@ -18,6 +18,7 @@ repositories {
 }
 
 val koTestVer = "5.5.4"
+val koTestExtensionVersion = "1.1.2"
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
@@ -35,6 +36,8 @@ dependencies {
 	testImplementation("io.kotest:kotest-runner-junit5:$koTestVer")
 	testImplementation("io.kotest:kotest-assertions-core:$koTestVer")
 	testImplementation("io.kotest:kotest-property:$koTestVer")
+	testImplementation("io.kotest.extensions:kotest-extensions-spring:$koTestExtensionVersion")
+	testImplementation("org.springframework.boot:spring-boot-starter-webflux")
 }
 
 tasks.withType<Test> {

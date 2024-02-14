@@ -3,6 +3,7 @@ package com.o3.mj.controller;
 import com.o3.mj.controller.dto.ErrorResponse;
 import com.o3.mj.usecase.exception.NotAllowedRegisterException;
 import com.o3.mj.usecase.exception.NotRegisteredCustomerException;
+import com.o3.mj.usecase.exception.NotRegisteredTaxException;
 import com.o3.mj.usecase.exception.RedundantCustomerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,12 @@ public class ExceptionControllerAdvice {
     @ResponseStatus(HttpStatus.FORBIDDEN)
     @ExceptionHandler(BadCredentialsException.class)
     public ErrorResponse handleBadCredentialsException(BadCredentialsException e) {
+        return new ErrorResponse(e.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(NotRegisteredTaxException.class)
+    public ErrorResponse handleNotRegisteredTaxException(NotRegisteredTaxException e) {
         return new ErrorResponse(e.getMessage());
     }
 

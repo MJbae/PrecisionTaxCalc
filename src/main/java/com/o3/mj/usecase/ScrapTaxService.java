@@ -12,6 +12,8 @@ import com.o3.mj.usecase.exception.NotRegisteredCustomerException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 public class ScrapTaxService {
     private final CustomerRepository repository;
@@ -37,7 +39,19 @@ public class ScrapTaxService {
 
     @Transactional
     private void mapAndSave(ScrapingResponse response, Customer customer) {
-        Tax tax = mapper.from(response, customer);
-        taxRepository.save(tax);
+        Tax newTax = mapper.from(response, customer);
+        Optional<Tax> prevTax = taxRepository.findByCustomer(customer);
+
+        if (prevTax.isPresent() && newTax.hasSameValue(prevTax.get())){
+            return;
+        }
+
+        if (prevTax.isEmpty()){
+            taxRepository.save(newTax);
+            return;
+        }
+
+        prevTax.get().replace(newTax);
+        taxRepository.save(prevTax.get());
     }
 }

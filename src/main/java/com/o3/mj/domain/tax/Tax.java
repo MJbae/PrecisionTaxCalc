@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -47,5 +48,22 @@ public class Tax {
                 .map(IncomeDeduction::getAmount)
                 .findFirst()
                 .orElse(BigDecimal.ZERO);
+    }
+
+    public boolean hasSameValue(Tax tax) {
+        if (this == tax) return true;
+        if (tax == null) return false;
+
+        return Objects.equals(calculatedTaxAmount, tax.calculatedTaxAmount)
+                && Objects.equals(totalSalary, tax.totalSalary)
+                && Objects.equals(customer, tax.customer)
+                && incomeDeductions.equals(tax.incomeDeductions);
+    }
+
+    public void replace(Tax newTax) {
+        this.calculatedTaxAmount = newTax.getCalculatedTaxAmount();
+        this.totalSalary = newTax.getTotalSalary();
+        this.incomeDeductions.clear();
+        this.incomeDeductions.addAll(newTax.incomeDeductions);
     }
 }

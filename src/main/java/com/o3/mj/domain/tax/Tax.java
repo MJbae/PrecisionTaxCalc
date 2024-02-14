@@ -41,7 +41,11 @@ public class Tax {
         return this.totalSalary;
     }
 
-    public Set<IncomeDeduction> getIncomeDeductions() {
-        return this.incomeDeductions;
+    public BigDecimal getDeductionAmount(DeductionType type) {
+        return this.incomeDeductions.stream()
+                .filter(d -> d.getDeductionType() == type)
+                .map(IncomeDeduction::getAmount)
+                .findFirst()
+                .orElse(BigDecimal.ZERO);
     }
 }

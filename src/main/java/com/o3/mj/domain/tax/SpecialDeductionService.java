@@ -12,10 +12,10 @@ public class SpecialDeductionService {
     private static final BigDecimal MEDICAL_THRESHOLD_RATE = BigDecimal.valueOf(0.03);
 
     public BigDecimal calculate(Tax tax) {
-        BigDecimal insuranceAmount = TaxUtils.getDeductionAmount(tax, DeductionType.INSURANCE);
-        BigDecimal medicalExpenses = TaxUtils.getDeductionAmount(tax, DeductionType.MEDICAL);
-        BigDecimal educationExpenses = TaxUtils.getDeductionAmount(tax, DeductionType.EDUCATION);
-        BigDecimal donationAmount = TaxUtils.getDeductionAmount(tax, DeductionType.DONATION);
+        BigDecimal insuranceAmount = tax.getDeductionAmount(DeductionType.INSURANCE);
+        BigDecimal medicalExpenses = tax.getDeductionAmount(DeductionType.MEDICAL);
+        BigDecimal educationExpenses = tax.getDeductionAmount(DeductionType.EDUCATION);
+        BigDecimal donationAmount = tax.getDeductionAmount(DeductionType.DONATION);
 
         BigDecimal educationDeduction = educationExpenses.multiply(EDUCATION_RATE);
         BigDecimal donationDeduction = donationAmount.multiply(DONATION_RATE);

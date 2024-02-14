@@ -7,7 +7,7 @@ public class RetirementPensionDeductionService {
     private static final BigDecimal RETIREMENT_PENSION_TAX_RATE = BigDecimal.valueOf(0.15);
 
     public BigDecimal calculate(Tax tax) {
-        BigDecimal retirementPensionAmount = TaxUtils.getDeductionAmount(tax, DeductionType.RETIREMENT_PENSION);
+        BigDecimal retirementPensionAmount = tax.getDeductionAmount(DeductionType.RETIREMENT_PENSION);
         return retirementPensionAmount.multiply(RETIREMENT_PENSION_TAX_RATE).setScale(0, RoundingMode.DOWN);
     }
 }

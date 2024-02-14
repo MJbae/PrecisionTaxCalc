@@ -31,4 +31,22 @@ public class IncomeDeduction {
     public BigDecimal getAmount() {
         return this.amount;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        IncomeDeduction that = (IncomeDeduction) o;
+
+        if (!amount.equals(that.amount)) return false;
+        return deductionType == that.deductionType;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = amount.hashCode();
+        result = 31 * result + (deductionType != null ? deductionType.hashCode() : 0);
+        return result;
+    }
 }

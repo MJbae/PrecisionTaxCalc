@@ -18,7 +18,7 @@ public class Tax {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    @JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = false)
     private Customer customer;
 
     private BigDecimal calculatedTaxAmount;
